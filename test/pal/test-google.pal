@@ -1,0 +1,13 @@
+click @"abc"(2, 3)
+
+click @(2, 3)
+
+move @(2, 3)
+
+wait 2s
+
+paste "hello world"
+
+scroll -100 @"abc"
+
+save "{{year}}{{month}}{{day}}{{hour}}{{minute}}{{second}}.md"
