@@ -13,7 +13,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(GFC                     "gfc")
 #set(ANTLR4_RUNTIME          "antlr4-cpp-runtime-4.13.1")
-set(ANTLR4_RUNTIME          "antlr4-4.9.3/runtime/cpp")
+set(ANTLR4_RUNTIME          "../antlr4-4.9.3/runtime/cpp")
 set(LIB_ANTLR4_RUNTIME      "antlr4-runtime")
 
 set(WITH_GFC_CRYPTO OFF CACHE BOOL "gfc crypto" FORCE)
@@ -22,15 +22,14 @@ set(WITH_GFC_LUA OFF CACHE BOOL "gfc lua" FORCE)
 add_subdirectory("3rd/${GFC}")
 
 include_directories(
-  "3rd/${ANTLR4_RUNTIME}/runtime/src"
+  "${ANTLR4_RUNTIME}/runtime/src"
   "3rd/${GFC}/include"
   "gen"
   "src"
 )
 
 link_directories(
-  "${CMAKE_BINARY_DIR}/3rd/${ANTLR4_RUNTIME}/runtime"
-  "3rd/${ANTLR4_RUNTIME}/dist"
+  "${ANTLR4_RUNTIME}/dist"
 )
 
 # add_custom_command(OUTPUT ${LIB_ANTLR4_RUNTIME}_OUT
@@ -59,12 +58,14 @@ set_target_properties(pal_shared PROPERTIES OUTPUT_NAME pal)
 # )
 
 target_link_libraries(pal
-  libantlr4-runtime.a
+  # ${LIB_ANTLR4_RUNTIME}
+  libantlr4-runtime.4.9.3.dylib
   gfc
 )
 
 target_link_libraries(pal_shared
-  libantlr4-runtime.dylib
+  # ${LIB_ANTLR4_RUNTIME}
+  libantlr4-runtime.4.9.3.dylib
   gfc
 )
 
@@ -78,8 +79,12 @@ add_executable(test-google
 )
 
 target_link_libraries(test-google
-  libantlr4-runtime.a
   pal
   gfc
   "-framework foundation"
+)
+
+set_target_properties(test-google PROPERTIES
+  BUILD_WITH_INSTALL_RPATH TRUE
+  # INSTALL_RPATH "@executable_path/../../3rd/${ANTLR4_RUNTIME}/dist"
 )

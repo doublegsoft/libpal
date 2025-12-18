@@ -35,45 +35,45 @@ add_custom_target(make_lib_output_dir ALL
 add_dependencies(antlr4_shared make_lib_output_dir)
 add_dependencies(antlr4_static make_lib_output_dir)
 
-find_package(utf8cpp QUIET)
+# find_package(utf8cpp QUIET)
 
-set(INSTALL_utf8cpp FALSE)
+# set(INSTALL_utf8cpp FALSE)
 
-if (utf8cpp_FOUND)
-  target_link_libraries(antlr4_shared utf8cpp)
-  target_link_libraries(antlr4_static utf8cpp)
-else()
+# if (utf8cpp_FOUND)
+#   target_link_libraries(antlr4_shared utf8cpp)
+#   target_link_libraries(antlr4_static utf8cpp)
+# else()
 
-  # older utf8cpp doesn't define the package above
-  find_path(utf8cpp_HEADER utf8.h
-    PATH_SUFFIXES utf8cpp
-    )
+#   # older utf8cpp doesn't define the package above
+#   find_path(utf8cpp_HEADER utf8.h
+#     PATH_SUFFIXES utf8cpp
+#     )
 
-  if (utf8cpp_HEADER)
-    include_directories(${utf8cpp_HEADER})
-  else()
-    include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
-    set(THIRDPARTY_DIR ${CMAKE_BINARY_DIR}/runtime/thirdparty)
-    set(UTFCPP_DIR ${THIRDPARTY_DIR}/utfcpp)
-    ExternalProject_Add(
-      utf8cpp
-      GIT_REPOSITORY        "https://github.com/nemtrif/utfcpp"
-      GIT_TAG               "v3.1.1"
-      SOURCE_DIR            ${UTFCPP_DIR}
-      UPDATE_DISCONNECTED   1
-      CMAKE_ARGS            -DCMAKE_INSTALL_PREFIX=${UTFCPP_DIR}/install -DUTF8_TESTS=off -DUTF8_SAMPLES=off
-      STEP_TARGETS          build)
+#   if (utf8cpp_HEADER)
+#     include_directories(${utf8cpp_HEADER})
+#   else()
+#     include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
+#     set(THIRDPARTY_DIR ${CMAKE_BINARY_DIR}/runtime/thirdparty)
+#     set(UTFCPP_DIR ${THIRDPARTY_DIR}/utfcpp)
+#     ExternalProject_Add(
+#       utf8cpp
+#       GIT_REPOSITORY        "https://github.com/nemtrif/utfcpp"
+#       GIT_TAG               "v3.1.1"
+#       SOURCE_DIR            ${UTFCPP_DIR}
+#       UPDATE_DISCONNECTED   1
+#       CMAKE_ARGS            -DCMAKE_INSTALL_PREFIX=${UTFCPP_DIR}/install -DUTF8_TESTS=off -DUTF8_SAMPLES=off
+#       STEP_TARGETS          build)
 
-    include_directories(
-      ${UTFCPP_DIR}/install/include/utf8cpp
-      ${UTFCPP_DIR}/install/include/utf8cpp/utf8
-      )
+#     include_directories(
+#       ${UTFCPP_DIR}/install/include/utf8cpp
+#       ${UTFCPP_DIR}/install/include/utf8cpp/utf8
+#       )
 
-    add_dependencies(antlr4_shared utf8cpp)
-    add_dependencies(antlr4_static utf8cpp)
-    set(INSTALL_utf8cpp TRUE)
-  endif()
-endif()
+#     add_dependencies(antlr4_shared utf8cpp)
+#     add_dependencies(antlr4_static utf8cpp)
+#     set(INSTALL_utf8cpp TRUE)
+#   endif()
+# endif()
 
 if(CMAKE_SYSTEM_NAME MATCHES "Linux")
   target_link_libraries(antlr4_shared ${UUID_LIBRARIES})

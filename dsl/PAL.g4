@@ -47,7 +47,7 @@ PAL_SAVE:                     'save';
 PAL_WAIT:                     'wait';
 PAL_PLUGIN:                   'plugin';
 PAL_AT:                       '@';
-PAL_TO:                       '%';
+PAL_OF:                       '%';
 PAL_REQUIRED:                 '!';
 
 pal_direction
@@ -63,7 +63,7 @@ pal_timeunit
   ;
 
 pal_target
-  :   PAL_AT path=PAL_QUOTED_STRING? PAL_REQUIRED? '(' x=PAL_INT ',' y=PAL_INT ')'
+  :   (PAL_AT | PAL_OF) path=PAL_QUOTED_STRING? PAL_REQUIRED? '(' x=PAL_INT ',' y=PAL_INT ')'
   ;
 
 pal_click
