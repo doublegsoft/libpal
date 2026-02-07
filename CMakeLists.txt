@@ -11,35 +11,50 @@ project(libpal C CXX)
 set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS}")
 set(CMAKE_CXX_STANDARD 17)
 
-set(GFC                     "gfc")
-#set(ANTLR4_RUNTIME          "antlr4-cpp-runtime-4.13.1")
-set(ANTLR4_RUNTIME          "../antlr4-4.9.3/runtime/cpp")
-set(LIB_ANTLR4_RUNTIME      "antlr4-runtime")
+if (WIN32)
+elseif (APPLE)
+  set(PLATFORM                          "darwin")
+elseif (UNIX)
+  set(PLATFORM                          "linux")
+endif()
+set(BUILD                             "build/${PLATFORM}")
+
+################################################################################
+##                                                                            ##
+##                                    antlr4                                  ##
+##                                                                            ##
+################################################################################
+set(ANTLR4_DIR                        "3rd/antlr4-4.9.3/runtime/Cpp")
+set(ANTLR4_INCLUDE_DIR                "${ANTLR4_DIR}/runtime/src")
+set(ANTLR4_LIBRARY_DIR                "${ANTLR4_DIR}/dist")
+set(ANTLR4_LIBRARIES                  antlr4-runtime)
+
+################################################################################
+##                                                                            ##
+##                                   gfc                                      ##
+##                                                                            ##
+################################################################################
+set(GFC_DIR                           "3rd/gfc")
+set(GFC_INCLUDE_DIR                   "${GFC_DIR}/include")
+set(GFC_LIBRARY_DIR                   "${GFC_DIR}/${BUILD}")
+set(GFC_LIBRARIES                     gfc)
+
 
 set(WITH_GFC_CRYPTO OFF CACHE BOOL "gfc crypto" FORCE)
 set(WITH_GFC_JVM OFF CACHE BOOL "gfc jvm" FORCE)
 set(WITH_GFC_LUA OFF CACHE BOOL "gfc lua" FORCE)
-add_subdirectory("3rd/${GFC}")
+add_subdirectory("${GFC_DIR}")
 
 include_directories(
-  "${ANTLR4_RUNTIME}/runtime/src"
-  "3rd/${GFC}/include"
   "gen"
   "src"
+  ${ANTLR4_INCLUDE_DIR}
+  ${GFC_INCLUDE_DIR}
 )
 
 link_directories(
-  "${ANTLR4_RUNTIME}/dist"
+  ${ANTLR4_LIBRARY_DIR}
 )
-
-# add_custom_command(OUTPUT ${LIB_ANTLR4_RUNTIME}_OUT
-#   COMMAND mkdir -p ${CMAKE_BINARY_DIR}/3rd/${ANTLR4_RUNTIME}
-#   COMMAND cmake -B ${CMAKE_BINARY_DIR}/3rd/${ANTLR4_RUNTIME} -S ${CMAKE_SOURCE_DIR}/3rd/${ANTLR4_RUNTIME}
-#   COMMAND make -C ${CMAKE_BINARY_DIR}/3rd/${ANTLR4_RUNTIME}
-# )
-# add_custom_target(${LIB_ANTLR4_RUNTIME} ALL
-#   DEPENDS ${LIB_ANTLR4_RUNTIME}_OUT
-# )
 
 set(LIBPAL_SOURCES
   src/libpal.cpp
@@ -53,20 +68,15 @@ add_library(pal STATIC ${LIBPAL_SOURCES})
 add_library(pal_shared SHARED ${LIBPAL_SOURCES})
 set_target_properties(pal_shared PROPERTIES OUTPUT_NAME pal)
 
-# add_dependencies(pal_shared
-#   ${LIB_ANTLR4_RUNTIME}
-# )
-
 target_link_libraries(pal
   # ${LIB_ANTLR4_RUNTIME}
-  libantlr4-runtime.4.9.3.dylib
-  gfc
+  ${ANTLR4_LIBRARIES}
+  ${GFC_LIBRARIES}
 )
 
 target_link_libraries(pal_shared
-  # ${LIB_ANTLR4_RUNTIME}
-  libantlr4-runtime.4.9.3.dylib
-  gfc
+  ${ANTLR4_LIBRARIES}
+  ${GFC_LIBRARIES}
 )
 
 ################################################################################
@@ -86,5 +96,4 @@ target_link_libraries(test-google
 
 set_target_properties(test-google PROPERTIES
   BUILD_WITH_INSTALL_RPATH TRUE
-  # INSTALL_RPATH "@executable_path/../../3rd/${ANTLR4_RUNTIME}/dist"
 )
