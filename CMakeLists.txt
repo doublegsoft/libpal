@@ -13,9 +13,9 @@ set(CMAKE_CXX_STANDARD 17)
 
 if (WIN32)
 elseif (APPLE)
-  set(PLATFORM                          "darwin")
+  set(PLATFORM                        "darwin")
 elseif (UNIX)
-  set(PLATFORM                          "linux")
+  set(PLATFORM                        "linux")
 endif()
 set(BUILD                             "build/${PLATFORM}")
 
