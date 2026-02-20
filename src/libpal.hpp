@@ -31,6 +31,8 @@ virtual void handleOnEnter(void) = 0;
 
 virtual void handleOnWait(int duration, const char* timeunit);
   
+virtual void handleOnRemove(const char* path) = 0;
+  
 };  
 
 class Program 

@@ -10,4 +10,6 @@ paste "hello world"
 
 scroll -100 @"abc"
 
+plugin#remove("/Users/christian/images")
+
 save "{{year}}{{month}}{{day}}{{hour}}{{minute}}{{second}}.md"

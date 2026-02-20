@@ -167,7 +167,12 @@ pal::Program::Evaluate(const char* content, int length)
 		}
 		else if (ctx_stmt->pal_plugin() != NULL) 
 		{
-
+      if (ctx_stmt->pal_plugin()->remove != nullptr)
+      {
+        string path = ctx_stmt->pal_plugin()->path->getText();
+        path = path.substr(1, path.length() - 2);
+        pimpl->handler->handleOnRemove(path.data());
+      }
 		}
 	}
 }

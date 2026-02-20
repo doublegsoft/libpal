@@ -61,6 +61,11 @@ void handleOnEnter() override
 {
   NSLog(@"enter");
 }
+  
+void handleOnRemove(const char* path) override
+{
+  NSLog(@"remove first file under %s", path);
+}
 	
 }; 
 
