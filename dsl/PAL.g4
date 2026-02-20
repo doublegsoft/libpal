@@ -34,6 +34,8 @@ PAL_NAMEFIRSTCHAR
 fragment
 PAL_DIGIT:                    [0-9];
 
+PAL_ID:                       PAL_NAMEFIRSTCHAR PAL_NAMECHAR*;
+
 PAL_QUOTED_STRING:            '"' (~["])* '"';
 
 PAL_INT:                      PAL_DIGIT+;
@@ -49,6 +51,10 @@ PAL_PLUGIN:                   'plugin';
 PAL_AT:                       '@';
 PAL_OF:                       '%';
 PAL_REQUIRED:                 '!';
+
+pal_id
+  : PAL_ID
+  ;
 
 pal_direction
   :   '+'
@@ -95,7 +101,7 @@ pal_wait
   ;
 
 pal_plugin
-  :   PAL_PLUGIN  
+  :   PAL_PLUGIN '#remove' '(' path=PAL_QUOTED_STRING ')'
   ;
 
 pal_statement
