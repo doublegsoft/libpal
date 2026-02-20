@@ -14,17 +14,17 @@ class  PALParser : public antlr4::Parser {
 public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
-    T__7 = 8, T__8 = 9, T__9 = 10, PAL_COMMENT = 11, PAL_WS = 12, PAL_ID = 13, 
-    PAL_QUOTED_STRING = 14, PAL_INT = 15, PAL_CLICK = 16, PAL_MOVE = 17, 
-    PAL_SCROLL = 18, PAL_PASTE = 19, PAL_ENTER = 20, PAL_SAVE = 21, PAL_WAIT = 22, 
-    PAL_PLUGIN = 23, PAL_AT = 24, PAL_OF = 25, PAL_REQUIRED = 26
+    T__7 = 8, T__8 = 9, T__9 = 10, PAL_COMMENT = 11, PAL_WS = 12, PAL_QUOTED_STRING = 13, 
+    PAL_INT = 14, PAL_CLICK = 15, PAL_MOVE = 16, PAL_SCROLL = 17, PAL_PASTE = 18, 
+    PAL_ENTER = 19, PAL_SAVE = 20, PAL_WAIT = 21, PAL_PLUGIN = 22, PAL_AT = 23, 
+    PAL_OF = 24, PAL_REQUIRED = 25
   };
 
   enum {
-    RulePal_id = 0, RulePal_direction = 1, RulePal_timeunit = 2, RulePal_target = 3, 
-    RulePal_click = 4, RulePal_scroll = 5, RulePal_move = 6, RulePal_enter = 7, 
-    RulePal_paste = 8, RulePal_save = 9, RulePal_wait = 10, RulePal_plugin = 11, 
-    RulePal_statement = 12, RulePal_program = 13
+    RulePal_direction = 0, RulePal_timeunit = 1, RulePal_target = 2, RulePal_click = 3, 
+    RulePal_scroll = 4, RulePal_move = 5, RulePal_enter = 6, RulePal_paste = 7, 
+    RulePal_save = 8, RulePal_wait = 9, RulePal_plugin = 10, RulePal_statement = 11, 
+    RulePal_program = 12
   };
 
   explicit PALParser(antlr4::TokenStream *input);
@@ -37,7 +37,6 @@ public:
   virtual antlr4::dfa::Vocabulary& getVocabulary() const override;
 
 
-  class Pal_idContext;
   class Pal_directionContext;
   class Pal_timeunitContext;
   class Pal_targetContext;
@@ -51,19 +50,6 @@ public:
   class Pal_pluginContext;
   class Pal_statementContext;
   class Pal_programContext; 
-
-  class  Pal_idContext : public antlr4::ParserRuleContext {
-  public:
-    Pal_idContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *PAL_ID();
-
-    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
-   
-  };
-
-  Pal_idContext* pal_id();
 
   class  Pal_directionContext : public antlr4::ParserRuleContext {
   public:
@@ -221,6 +207,7 @@ public:
 
   class  Pal_pluginContext : public antlr4::ParserRuleContext {
   public:
+    antlr4::Token *remove = nullptr;
     antlr4::Token *path = nullptr;
     Pal_pluginContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;

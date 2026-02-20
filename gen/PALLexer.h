@@ -14,10 +14,10 @@ class  PALLexer : public antlr4::Lexer {
 public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
-    T__7 = 8, T__8 = 9, T__9 = 10, PAL_COMMENT = 11, PAL_WS = 12, PAL_ID = 13, 
-    PAL_QUOTED_STRING = 14, PAL_INT = 15, PAL_CLICK = 16, PAL_MOVE = 17, 
-    PAL_SCROLL = 18, PAL_PASTE = 19, PAL_ENTER = 20, PAL_SAVE = 21, PAL_WAIT = 22, 
-    PAL_PLUGIN = 23, PAL_AT = 24, PAL_OF = 25, PAL_REQUIRED = 26
+    T__7 = 8, T__8 = 9, T__9 = 10, PAL_COMMENT = 11, PAL_WS = 12, PAL_QUOTED_STRING = 13, 
+    PAL_INT = 14, PAL_CLICK = 15, PAL_MOVE = 16, PAL_SCROLL = 17, PAL_PASTE = 18, 
+    PAL_ENTER = 19, PAL_SAVE = 20, PAL_WAIT = 21, PAL_PLUGIN = 22, PAL_AT = 23, 
+    PAL_OF = 24, PAL_REQUIRED = 25
   };
 
   explicit PALLexer(antlr4::CharStream *input);

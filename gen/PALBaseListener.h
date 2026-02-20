@@ -18,9 +18,6 @@ namespace pal {
 class  PALBaseListener : public PALListener {
 public:
 
-  virtual void enterPal_id(PALParser::Pal_idContext * /*ctx*/) override { }
-  virtual void exitPal_id(PALParser::Pal_idContext * /*ctx*/) override { }
-
   virtual void enterPal_direction(PALParser::Pal_directionContext * /*ctx*/) override { }
   virtual void exitPal_direction(PALParser::Pal_directionContext * /*ctx*/) override { }
 

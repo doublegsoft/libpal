@@ -59,7 +59,7 @@ void handleOnPaste(const char* text) override
 	
 void handleOnEnter() override
 {
-	
+  NSLog(@"enter");
 }
 	
 }; 

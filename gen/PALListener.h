@@ -16,9 +16,6 @@ namespace pal {
 class  PALListener : public antlr4::tree::ParseTreeListener {
 public:
 
-  virtual void enterPal_id(PALParser::Pal_idContext *ctx) = 0;
-  virtual void exitPal_id(PALParser::Pal_idContext *ctx) = 0;
-
   virtual void enterPal_direction(PALParser::Pal_directionContext *ctx) = 0;
   virtual void exitPal_direction(PALParser::Pal_directionContext *ctx) = 0;
 

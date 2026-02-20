@@ -72,7 +72,7 @@ void
 pal::Program::Evaluate(const char* content, int length)
 {
 	std::string source(content);
-	
+  
 	ANTLRInputStream input(source);
 	PALLexer lexer(&input);
 	CommonTokenStream tokens(&lexer);
