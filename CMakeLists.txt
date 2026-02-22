@@ -12,6 +12,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS}")
 set(CMAKE_CXX_STANDARD 17)
 
 if (WIN32)
+  set(PLATFORM                        "mingw")
 elseif (APPLE)
   set(PLATFORM                        "darwin")
 elseif (UNIX)
@@ -87,8 +88,7 @@ target_link_libraries(pal_shared
 # test_google (FORCE OBJECTIVE-C++)
 #
 ################################################################################
-if (WIN32)
-elseif (APPLE)
+if (APPLE)
   add_executable(test-google
     "test/test-google.mm"
   )

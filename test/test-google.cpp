@@ -71,8 +71,7 @@ void handleOnRemove(const char* path) override
 int 
 main(int argc, char* argv[])
 {
-	gfc_gc_init();
-		
+	gfc_gc_init();	
   PrintHandler handler;
   pal::Program prog(&handler);
   prog.Evaluate(PAL_ROOT_DIR "/test-google.pal");
