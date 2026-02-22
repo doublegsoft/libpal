@@ -98,10 +98,13 @@ elseif (APPLE)
     gfc
     "-framework foundation"
   )
-
-  set_target_properties(test-google PROPERTIES
-    BUILD_WITH_INSTALL_RPATH TRUE
+else()
+  add_executable(test-google
+    "test/test-google.cpp"
   )
-elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")
-  
+
+  target_link_libraries(test-google
+    pal
+    gfc
+  )
 endif()
