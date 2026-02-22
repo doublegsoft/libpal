@@ -38,9 +38,9 @@ set(LUAJIT				"LuaJIT-2.1")
 set(LIB_LUA				"liblua")
 set(LUA						"lua-5.4.6")
 
-option(WITH_GFC_JVM 			"gfc jvm" ON)
-option(WITH_GFC_LUA 			"gfc lua" ON)
-option(WITH_GFC_CRYPTO 		"gfc crypto" ON)
+option(WITH_GFC_JVM 			"gfc jvm" OFF)
+option(WITH_GFC_LUA 			"gfc lua" OFF)
+option(WITH_GFC_CRYPTO 		"gfc crypto" OFF)
 
 set(GFC_SOURCES 
 	src/gfc_base64.c

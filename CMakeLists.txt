@@ -67,6 +67,9 @@ set(LIBPAL_SOURCES
 add_library(pal STATIC ${LIBPAL_SOURCES})
 add_library(pal_shared SHARED ${LIBPAL_SOURCES})
 set_target_properties(pal_shared PROPERTIES OUTPUT_NAME pal)
+if (UNIX)
+  set_target_properties(gfc PROPERTIES POSITION_INDEPENDENT_CODE ON)
+endif(UNIX)
 
 target_link_libraries(pal
   # ${LIB_ANTLR4_RUNTIME}
@@ -84,16 +87,21 @@ target_link_libraries(pal_shared
 # test_google (FORCE OBJECTIVE-C++)
 #
 ################################################################################
-add_executable(test-google
-  "test/test-google.mm"
-)
+if (WIN32)
+elseif (APPLE)
+  add_executable(test-google
+    "test/test-google.mm"
+  )
 
-target_link_libraries(test-google
-  pal
-  gfc
-  "-framework foundation"
-)
+  target_link_libraries(test-google
+    pal
+    gfc
+    "-framework foundation"
+  )
 
-set_target_properties(test-google PROPERTIES
-  BUILD_WITH_INSTALL_RPATH TRUE
-)
+  set_target_properties(test-google PROPERTIES
+    BUILD_WITH_INSTALL_RPATH TRUE
+  )
+elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+  
+endif()
