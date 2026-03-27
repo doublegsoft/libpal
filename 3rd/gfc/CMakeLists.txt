@@ -38,12 +38,12 @@ set(LUAJIT				"LuaJIT-2.1")
 set(LIB_LUA				"liblua")
 set(LUA						"lua-5.4.6")
 
-option(WITH_GFC_JVM 			"gfc jvm" ON)
-option(WITH_GFC_LUA 			"gfc lua" ON)
-option(WITH_GFC_CRYPTO 		"gfc crypto" ON)
+option(WITH_GFC_JVM 			"gfc jvm" OFF)
+option(WITH_GFC_LUA 			"gfc lua" OFF)
+option(WITH_GFC_CRYPTO 		"gfc crypto" OFF)
 
 set(GFC_SOURCES 
-	src/gfc_base64.c
+  src/gfc_base64.c
   src/gfc_hex.c
   src/gfc_list.c
   src/gfc_log.c
@@ -72,9 +72,9 @@ set(GFC_SOURCES
 ##
 ####################
 if(WITH_GFC_JVM)
-	if (APPLE)
-		list(APPEND GFC_SOURCES src/gfc_jvm.c)
-	endif (APPLE)
+  if (APPLE)
+    list(APPEND GFC_SOURCES src/gfc_jvm.c)
+  endif (APPLE)
 endif(WITH_GFC_JVM)
 
 if(WITH_GFC_CRYPTO) 
@@ -158,6 +158,7 @@ set_target_properties(gfc_shared PROPERTIES OUTPUT_NAME gfc)
 if (WIN32)
 	link_directories(
 		"/opt/local/x86_64-w64-mingw32/lib"
+		"/mingw64/lib"
 	)
 	target_link_libraries(gfc PRIVATE
 	  iconv

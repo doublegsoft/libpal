@@ -12,6 +12,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS}")
 set(CMAKE_CXX_STANDARD 17)
 
 if (WIN32)
+  set(PLATFORM                        "mingw")
 elseif (APPLE)
   set(PLATFORM                        "darwin")
 elseif (UNIX)
@@ -67,6 +68,9 @@ set(LIBPAL_SOURCES
 add_library(pal STATIC ${LIBPAL_SOURCES})
 add_library(pal_shared SHARED ${LIBPAL_SOURCES})
 set_target_properties(pal_shared PROPERTIES OUTPUT_NAME pal)
+if (UNIX)
+  set_target_properties(gfc PROPERTIES POSITION_INDEPENDENT_CODE ON)
+endif(UNIX)
 
 target_link_libraries(pal
   # ${LIB_ANTLR4_RUNTIME}
@@ -84,16 +88,23 @@ target_link_libraries(pal_shared
 # test_google (FORCE OBJECTIVE-C++)
 #
 ################################################################################
-add_executable(test-google
-  "test/test-google.mm"
-)
+if (APPLE)
+  add_executable(test-google
+    "test/test-google.mm"
+  )
 
-target_link_libraries(test-google
-  pal
-  gfc
-  "-framework foundation"
-)
+  target_link_libraries(test-google
+    pal
+    gfc
+    "-framework foundation"
+  )
+else()
+  add_executable(test-google
+    "test/test-google.cpp"
+  )
 
-set_target_properties(test-google PROPERTIES
-  BUILD_WITH_INSTALL_RPATH TRUE
-)
+  target_link_libraries(test-google
+    pal
+    gfc
+  )
+endif()
