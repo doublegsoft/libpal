@@ -24,6 +24,14 @@ void handleOnClick(int x, int y, const char* path, bool required, bool relative)
 	else
 		NSLog(@"click (%d, %d)", x, y);
 }
+
+void handleOnClick(int x, int y, int delta, const char* path, bool required, bool relative) override
+{
+	if (path != NULL)
+		NSLog(@"click %s (%d, %d, %d)", path, x, y, delta);
+	else
+		NSLog(@"click (%d, %d, %d)", x, y, delta);
+}
 	
 void handleOnMove(int x, int y, const char* path) override
 {
@@ -31,7 +39,6 @@ void handleOnMove(int x, int y, const char* path) override
 		NSLog(@"move %s (%d, %d)", path, x, y);
 	else
 		NSLog(@"move (%d, %d)", x, y);
-
 }
 	
 void handleOnScroll(int offset, const char* direction, const char* path) override

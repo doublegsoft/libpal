@@ -80,6 +80,7 @@ public:
     antlr4::Token *path = nullptr;
     antlr4::Token *x = nullptr;
     antlr4::Token *y = nullptr;
+    antlr4::Token *delta = nullptr;
     Pal_targetContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *PAL_AT();

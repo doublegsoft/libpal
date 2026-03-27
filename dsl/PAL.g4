@@ -63,7 +63,7 @@ pal_timeunit
   ;
 
 pal_target
-  :   (PAL_AT | PAL_OF) path=PAL_QUOTED_STRING? PAL_REQUIRED? '(' x=PAL_INT ',' y=PAL_INT ')'
+  :   (PAL_AT | PAL_OF) path=PAL_QUOTED_STRING? PAL_REQUIRED? '(' x=PAL_INT ',' y=PAL_INT (',' delta=PAL_INT)? ')'
   ;
 
 pal_click
