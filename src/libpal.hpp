@@ -19,6 +19,8 @@ public:
   
 virtual void handleOnClick(int x, int y, const char* path, bool required, bool relative) = 0;
 
+virtual void handleOnClick(int x, int y, int delta, const char* path, bool required, bool relative) = 0;
+
 virtual void handleOnMove(int x, int y, const char* path) = 0;
 
 virtual void handleOnScroll(int offset, const char* direction, const char* path) = 0;

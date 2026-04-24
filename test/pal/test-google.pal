@@ -1,5 +1,7 @@
 click @"abc"(2, 3)
 
+click @"bcd"(2, 3, 100)
+
 click @(2, 3)
 
 move @(2, 3)
