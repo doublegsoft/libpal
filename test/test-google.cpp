@@ -23,6 +23,14 @@ void handleOnClick(int x, int y, const char* path, bool required, bool relative)
 	else
 		printf("click (%d, %d)\n", x, y);
 }
+
+void handleOnClick(int x, int y, int delta, const char* path, bool required, bool relative) override
+{
+	if (path != NULL)
+		printf("click %s (%d, %d) with delta %d\n", path, x, y, delta);
+	else
+		printf("click (%d, %d) with delta %d\n", x, y, delta);
+}	
 	
 void handleOnMove(int x, int y, const char* path) override
 {
