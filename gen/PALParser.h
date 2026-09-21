@@ -21,10 +21,10 @@ public:
   };
 
   enum {
-    RulePal_direction = 0, RulePal_timeunit = 1, RulePal_target = 2, RulePal_click = 3, 
-    RulePal_scroll = 4, RulePal_move = 5, RulePal_enter = 6, RulePal_paste = 7, 
-    RulePal_save = 8, RulePal_wait = 9, RulePal_plugin = 10, RulePal_statement = 11, 
-    RulePal_program = 12
+    RulePal_int = 0, RulePal_direction = 1, RulePal_timeunit = 2, RulePal_target = 3, 
+    RulePal_click = 4, RulePal_scroll = 5, RulePal_move = 6, RulePal_enter = 7, 
+    RulePal_paste = 8, RulePal_save = 9, RulePal_wait = 10, RulePal_plugin = 11, 
+    RulePal_statement = 12, RulePal_program = 13
   };
 
   explicit PALParser(antlr4::TokenStream *input);
@@ -37,6 +37,7 @@ public:
   virtual antlr4::dfa::Vocabulary& getVocabulary() const override;
 
 
+  class Pal_intContext;
   class Pal_directionContext;
   class Pal_timeunitContext;
   class Pal_targetContext;
@@ -50,6 +51,19 @@ public:
   class Pal_pluginContext;
   class Pal_statementContext;
   class Pal_programContext; 
+
+  class  Pal_intContext : public antlr4::ParserRuleContext {
+  public:
+    Pal_intContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *PAL_INT();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+   
+  };
+
+  Pal_intContext* pal_int();
 
   class  Pal_directionContext : public antlr4::ParserRuleContext {
   public:
@@ -78,17 +92,18 @@ public:
   class  Pal_targetContext : public antlr4::ParserRuleContext {
   public:
     antlr4::Token *path = nullptr;
-    antlr4::Token *x = nullptr;
-    antlr4::Token *y = nullptr;
+    PALParser::Pal_intContext *x = nullptr;
+    PALParser::Pal_intContext *y = nullptr;
     antlr4::Token *delta = nullptr;
     Pal_targetContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *PAL_AT();
     antlr4::tree::TerminalNode *PAL_OF();
-    std::vector<antlr4::tree::TerminalNode *> PAL_INT();
-    antlr4::tree::TerminalNode* PAL_INT(size_t i);
+    std::vector<Pal_intContext *> pal_int();
+    Pal_intContext* pal_int(size_t i);
     antlr4::tree::TerminalNode *PAL_REQUIRED();
     antlr4::tree::TerminalNode *PAL_QUOTED_STRING();
+    antlr4::tree::TerminalNode *PAL_INT();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;

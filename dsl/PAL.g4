@@ -50,6 +50,10 @@ PAL_AT:                       '@';
 PAL_OF:                       '%';
 PAL_REQUIRED:                 '!';
 
+pal_int
+  : ('-')? PAL_INT
+  ;
+
 pal_direction
   :   '+'
   |   '-'
@@ -63,7 +67,7 @@ pal_timeunit
   ;
 
 pal_target
-  :   (PAL_AT | PAL_OF) path=PAL_QUOTED_STRING? PAL_REQUIRED? '(' x=PAL_INT ',' y=PAL_INT (',' delta=PAL_INT)? ')'
+  :   (PAL_AT | PAL_OF) path=PAL_QUOTED_STRING? PAL_REQUIRED? '(' x=pal_int ',' y=pal_int (',' delta=PAL_INT)? ')'
   ;
 
 pal_click
