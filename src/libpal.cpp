@@ -62,7 +62,6 @@ pal::Program::Evaluate(const char* filepath)
 {
 	gfc_string_p content = NULL;
 	gfc_fs_read(filepath, &content);
-	
 	Evaluate(content->buffer, gfc_string_length(content));
 		
 	gfc_string_free(content);
