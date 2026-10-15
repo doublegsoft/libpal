@@ -63,6 +63,11 @@ void handleOnPaste(const char* text) override
 {
 	printf("paste %s\n", text);
 }
+
+void handleOnLoad(const char* path) override
+{
+	printf("load %s\n", path);
+}
 	
 void handleOnEnter() override
 {
