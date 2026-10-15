@@ -8,6 +8,8 @@ Process Automation Language
 ▀▄▄▄▄▄▀▄▄▄▀▄▄▄▄▀▀▄▄▄▀▀▀▄▄▀▄▄▀▄▄▄▄▄▀
 ```
 
-```
+### Lexer and Parser
 
+```
+./script/gen-antlr4-source.sh
 ```

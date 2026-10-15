@@ -7,6 +7,16 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface PALListener extends ParseTreeListener {
 	/**
+	 * Enter a parse tree produced by {@link PALParser#pal_int}.
+	 * @param ctx the parse tree
+	 */
+	void enterPal_int(PALParser.Pal_intContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PALParser#pal_int}.
+	 * @param ctx the parse tree
+	 */
+	void exitPal_int(PALParser.Pal_intContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link PALParser#pal_direction}.
 	 * @param ctx the parse tree
 	 */

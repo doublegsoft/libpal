@@ -43,6 +43,7 @@ PAL_MOVE:                     'move';
 PAL_SCROLL:                   'scroll';
 PAL_PASTE:                    'paste';
 PAL_ENTER:                    'enter';
+PAL_LOAD:                     'load';
 PAL_SAVE:                     'save';
 PAL_WAIT:                     'wait';
 PAL_PLUGIN:                   'plugin';
@@ -90,6 +91,11 @@ pal_paste
   :   PAL_PASTE content=PAL_QUOTED_STRING?
   ;
 
+// load file content into clipboard
+pal_load
+  :   PAL_LOAD content=PAL_QUOTED_STRING?
+  ;
+
 pal_save
   :   PAL_SAVE path=PAL_QUOTED_STRING
   ;
@@ -108,6 +114,7 @@ pal_statement
   |   pal_move
   |   pal_paste
   |   pal_wait
+  |   pal_load
   |   pal_save
   |   pal_enter
   |   pal_plugin

@@ -63,6 +63,11 @@ void handleOnPaste(const char* text) override
 {
 	NSLog(@"paste %s", text);
 }
+
+void handleOnLoad(const char* path) override
+{
+	NSLog(@"load %s", path);
+}
 	
 void handleOnEnter() override
 {

@@ -29,6 +29,8 @@ virtual void handleOnSave(const char* path) = 0;
 
 virtual void handleOnPaste(const char* text) = 0;
 
+virtual void handleOnLoad(const char* path) = 0;
+
 virtual void handleOnEnter(void) = 0; 
 
 virtual void handleOnWait(int duration, const char* timeunit);

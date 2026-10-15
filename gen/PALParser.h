@@ -16,15 +16,15 @@ public:
     T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
     T__7 = 8, T__8 = 9, T__9 = 10, PAL_COMMENT = 11, PAL_WS = 12, PAL_QUOTED_STRING = 13, 
     PAL_INT = 14, PAL_CLICK = 15, PAL_MOVE = 16, PAL_SCROLL = 17, PAL_PASTE = 18, 
-    PAL_ENTER = 19, PAL_SAVE = 20, PAL_WAIT = 21, PAL_PLUGIN = 22, PAL_AT = 23, 
-    PAL_OF = 24, PAL_REQUIRED = 25
+    PAL_ENTER = 19, PAL_LOAD = 20, PAL_SAVE = 21, PAL_WAIT = 22, PAL_PLUGIN = 23, 
+    PAL_AT = 24, PAL_OF = 25, PAL_REQUIRED = 26
   };
 
   enum {
     RulePal_int = 0, RulePal_direction = 1, RulePal_timeunit = 2, RulePal_target = 3, 
     RulePal_click = 4, RulePal_scroll = 5, RulePal_move = 6, RulePal_enter = 7, 
-    RulePal_paste = 8, RulePal_save = 9, RulePal_wait = 10, RulePal_plugin = 11, 
-    RulePal_statement = 12, RulePal_program = 13
+    RulePal_paste = 8, RulePal_load = 9, RulePal_save = 10, RulePal_wait = 11, 
+    RulePal_plugin = 12, RulePal_statement = 13, RulePal_program = 14
   };
 
   explicit PALParser(antlr4::TokenStream *input);
@@ -46,6 +46,7 @@ public:
   class Pal_moveContext;
   class Pal_enterContext;
   class Pal_pasteContext;
+  class Pal_loadContext;
   class Pal_saveContext;
   class Pal_waitContext;
   class Pal_pluginContext;
@@ -190,6 +191,21 @@ public:
 
   Pal_pasteContext* pal_paste();
 
+  class  Pal_loadContext : public antlr4::ParserRuleContext {
+  public:
+    antlr4::Token *content = nullptr;
+    Pal_loadContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *PAL_LOAD();
+    antlr4::tree::TerminalNode *PAL_QUOTED_STRING();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+   
+  };
+
+  Pal_loadContext* pal_load();
+
   class  Pal_saveContext : public antlr4::ParserRuleContext {
   public:
     antlr4::Token *path = nullptr;
@@ -246,6 +262,7 @@ public:
     Pal_moveContext *pal_move();
     Pal_pasteContext *pal_paste();
     Pal_waitContext *pal_wait();
+    Pal_loadContext *pal_load();
     Pal_saveContext *pal_save();
     Pal_enterContext *pal_enter();
     Pal_pluginContext *pal_plugin();

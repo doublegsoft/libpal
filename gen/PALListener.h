@@ -43,6 +43,9 @@ public:
   virtual void enterPal_paste(PALParser::Pal_pasteContext *ctx) = 0;
   virtual void exitPal_paste(PALParser::Pal_pasteContext *ctx) = 0;
 
+  virtual void enterPal_load(PALParser::Pal_loadContext *ctx) = 0;
+  virtual void exitPal_load(PALParser::Pal_loadContext *ctx) = 0;
+
   virtual void enterPal_save(PALParser::Pal_saveContext *ctx) = 0;
   virtual void exitPal_save(PALParser::Pal_saveContext *ctx) = 0;
 

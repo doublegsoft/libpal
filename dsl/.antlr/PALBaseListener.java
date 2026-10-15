@@ -16,6 +16,18 @@ public class PALBaseListener implements PALListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPal_int(PALParser.Pal_intContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPal_int(PALParser.Pal_intContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterPal_direction(PALParser.Pal_directionContext ctx) { }
 	/**
 	 * {@inheritDoc}

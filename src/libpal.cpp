@@ -142,6 +142,12 @@ pal::Program::Evaluate(const char* content, int length)
 			int offset = atoi(ctx_stmt->pal_scroll()->offset->getText().data());
 			pimpl->handler->handleOnScroll(offset, direction.data(), found == "" ? NULL : found.data());
 		}
+		else if (ctx_stmt->pal_load() != NULL)
+		{
+			string str = ctx_stmt->pal_load()->content->getText();
+			string path = str.substr(1, str.length() - 2);
+			pimpl->handler->handleOnLoad(path.data());
+		}
 		else if (ctx_stmt->pal_paste() != NULL)
 		{
 			string str = ctx_stmt->pal_paste()->content->getText();

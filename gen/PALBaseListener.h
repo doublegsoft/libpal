@@ -45,6 +45,9 @@ public:
   virtual void enterPal_paste(PALParser::Pal_pasteContext * /*ctx*/) override { }
   virtual void exitPal_paste(PALParser::Pal_pasteContext * /*ctx*/) override { }
 
+  virtual void enterPal_load(PALParser::Pal_loadContext * /*ctx*/) override { }
+  virtual void exitPal_load(PALParser::Pal_loadContext * /*ctx*/) override { }
+
   virtual void enterPal_save(PALParser::Pal_saveContext * /*ctx*/) override { }
   virtual void exitPal_save(PALParser::Pal_saveContext * /*ctx*/) override { }
 
